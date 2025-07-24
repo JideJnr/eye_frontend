@@ -1,0 +1,15 @@
+{
+  "name": "Test",
+  "integrations": {
+    "capacitor": {}
+  },
+  
+    "proxies": [
+      {
+        "path": "/api",
+        "proxyUrl": "https://api-football-cy7l.onrender.com"
+      }
+    ],
+  "type": "react-vite",
+  "id": "49e27a35"
+}
