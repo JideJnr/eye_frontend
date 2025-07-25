@@ -22,7 +22,7 @@ const Home = () => {
 
   // WebSocket connection management
   useEffect(() => {
-    if (!engineStatus) {
+    if (!eaglesEye) {
       if (wsRef.current) {
         wsRef.current.close();
         wsRef.current = null;
@@ -58,7 +58,7 @@ const Home = () => {
     };
 
     wsRef.current.onclose = () => {
-      if (engineStatus) addLog('Connection closed', 'warning');
+      if (eaglesEye) addLog('Connection closed', 'warning');
     };
 
     return () => {

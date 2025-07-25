@@ -7,7 +7,7 @@
     "proxies": [
       {
         "path": "/api",
-        "proxyUrl": "https://api-football-cy7l.onrender.com"
+        "proxyUrl": "https://eye-api-abkr.onrender.com"
       }
     ],
   "type": "react-vite",

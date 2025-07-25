@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api-football-cy7l.onrender.com';
+const BASE_URL = 'https://eye-api-abkr.onrender.com';
 
 const api = axios.create({
   baseURL: BASE_URL

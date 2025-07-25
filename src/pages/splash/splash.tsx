@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IonContent, IonPage, useIonRouter } from '@ionic/react';
 
 const lines = [
-  'Initializing GODSCRAPR...',
+  'Initializing Signals...',
   'Loading modules: brain.js, memory.sys, faith.injector',
   'Bypassing firewalls...',
   'Injecting payload...',
@@ -34,9 +34,14 @@ const Splash: React.FC = () => {
   return (
     <IonPage>
       <IonContent className="bg-black flex flex-col gap-4 w-full h-full py-8  ">
-        <pre className="text-green-400 font-mono text-sm p-4 whitespace-pre-wrap mx-auto h-2/3">
-          {output}
-        </pre>
+        <div className=' w-full h-2/3 flex flex-col'>
+          
+          <pre className="text-green-400 font-mono text-sm p-4 whitespace-pre-wrap w-fit h-fit mx-auto mt-auto mb-4">
+            {output}
+          </pre>
+          
+        </div>
+
         <div className=' mx-auto w-fit h-1/3  '>
           Loading
         </div>
