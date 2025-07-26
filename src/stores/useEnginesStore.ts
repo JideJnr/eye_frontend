@@ -1,8 +1,9 @@
 import { create } from 'zustand'
-import * as api from '../services/api' // Assume all these API methods exist
+import * as api from '../services/api' 
 
 interface EngineState {
-  eyeStatus: boolean
+  eagleStatus: boolean
+  data: any
   loading: boolean
   error: string | null
   message: string | null
@@ -16,10 +17,11 @@ interface EngineState {
 }
 
 export const useEngineStore = create<EngineState>((set) => ({
-  eyeStatus: false,
+  data: null,
   loading: false,
   error: null,
   message: null,
+  eagleStatus: false,
 
   startEaglesEye: async () => {
     set({ loading: true, error: null })
@@ -27,12 +29,17 @@ export const useEngineStore = create<EngineState>((set) => ({
       const res = await api.startEaglesEye()
 
         if (!res.success) {
-            set({loading: false , error: res.error || 'Failed to start engine' , message: res.message})
+          if (res.status === "ENGINE_ALREADY_RUNNING") {
+            set({ loading: false , message: res.message , error: null, eagleStatus: true });
+          } else {
+            set({ loading: false, error: res.error, message: res.message });
+          }
         }
         if (res.success) {
-            set({ eyeStatus: true, loading: false , message: res.message , error: null })
+            set({loading: false , message: res.message , error: null, eagleStatus: true })
         }
 
+  
         
     } catch (err: any) {
       set({ error: err.message || 'Unknown error', loading: false })
@@ -48,7 +55,7 @@ export const useEngineStore = create<EngineState>((set) => ({
             set({loading: false , error: res.error || 'Failed to stop engine' , message: res.message})
         }
         if (res.success) {
-            set({ eyeStatus: true, loading: false , message: res.message , error: null })
+            set({  loading: false , message: res.message , error: null, eagleStatus: false })
         }
 
         
@@ -57,10 +64,7 @@ export const useEngineStore = create<EngineState>((set) => ({
     }
   },
 
-
-
-
-    checkEyeStatus: async () => {
+  checkEyeStatus: async () => {
     set({ loading: true, error: null })
     try {
       const res = await api.checkEyeStatus()
@@ -69,7 +73,7 @@ export const useEngineStore = create<EngineState>((set) => ({
             set({loading: false , error: res.error  , message: res.message})
         }
         if (res.success) {
-            set({ eyeStatus: true, loading: false , message: res.message , error: null })
+            set({  loading: false , message: res.message , error: null  })
         }
 
         
@@ -86,8 +90,10 @@ export const useEngineStore = create<EngineState>((set) => ({
             set({loading: false , error: res.error  , message: res.message})
         }
         if (res.success) {
-            set({ eyeStatus: true, loading: false , message: res.message , error: null })
+            set({  loading: false , message: res.message , error: null })
         }
+
+        return res || [];
 
         
     } catch (err: any) {
@@ -100,11 +106,17 @@ export const useEngineStore = create<EngineState>((set) => ({
     try {
       const res = await api.startEngineById(id)
         if (!res.success) {
-            set({loading: false , error: res.error  , message: res.message})
+          if (res.status !== "ENGINE_ALREADY_RUNNING") {
+            set({ loading: false, error: res.error, message: res.message });
+          } else {
+            set({ loading: false, error: res.error, message: res.message });
+          }
         }
+
         if (res.success) {
-            set({ eyeStatus: true, loading: false , message: res.message , error: null })
+            set({  loading: false , message: res.message , error: null })
         }
+        return res || {};
     } catch (err: any) {
       set({ error: err.message || 'Unknown error', loading: false })
     }
@@ -131,12 +143,14 @@ export const useEngineStore = create<EngineState>((set) => ({
     set({ loading: true, error: null })
     try {
       const res = await api.checkEngineStatus(id)
-              if (!res.success) {
+        if (!res.success) {
+          
             set({loading: false , error: res.error  , message: res.message})
         }
         if (res.success) {
-            set({ eyeStatus: true, loading: false , message: res.message , error: null })
+            set({ loading: false , message: res.message , error: null })
         }
+        return res || {};
     } catch (err: any) {
       set({ error: err.message || 'Unknown error', loading: false })
     }

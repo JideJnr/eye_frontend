@@ -7,16 +7,16 @@ import {
 } from "@ionic/react";
 import { Tab, TabGroup } from "@headlessui/react";
 import React from "react";
+import Home from "./home/home";
+import Bots from "./engines/engines";
+import Activity from "./activity/activity";
+import Settings from "./settings/settings";
 
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Home = React.lazy(() => import("./home/home"));
-const Settings = React.lazy(() => import("./settings/settings"));
-const Bots = React.lazy(() => import("./engines/engines"));
-const Activity = React.lazy(() => import( "./activity/activity"));
 
 function Services() {
   const refresh = (e: CustomEvent) => {

@@ -12,7 +12,7 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
     startEngineById,
     checkEngineStatus,
     stopEngineById,
-    eyeStatus,
+    eagleStatus,
     loading: apiLoading,
     error,
   } = useEngineStore();
@@ -21,6 +21,7 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [eaglesEye, setEaglesEye] = useState(false);
   const [engine, setEngine] = useState<any[]>([]);
   const [engines, setEngines] = useState<any>(null);
+
 
   const wrappedStartEaglesEye = async () => {
     const response = await startEaglesEye();
@@ -38,7 +39,7 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
 
   const toggleEaglesEye = async () => {
-    if (eyeStatus) {
+    if (eagleStatus) {
       const response = await wrappedStopEaglesEye();
       if (response?.success) {
         setEaglesEye(false);
@@ -55,6 +56,7 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const WrappedGetAllEngines = async () => {
     const response = await getAllEngines();
+    console.log('Engines fetched:', response.data);
     if (response?.success) {
       setEngines(response.data || []);
     }
@@ -62,6 +64,7 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const wrappedStartEngineById = async (id: string) => {
     const response = await startEngineById(id);
+    
 
   };
 
@@ -88,7 +91,7 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
         eaglesEye,
         engine,
         engines,
-        eyeStatus,
+        eagleStatus,
         loading: apiLoading,
         error,
       }}

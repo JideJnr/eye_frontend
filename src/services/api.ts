@@ -42,7 +42,7 @@ export const checkEyeStatus = async () => {
 };
 
 export const getAllEngines = async () => {
-  const response = await api.get<any>(`/all`);
+  const response = await api.get<any>(`/get/all`);
   return response.data;
 };
 
@@ -63,7 +63,7 @@ export const stopEngineById = async (
 export const checkEngineStatus = async (
   id:string
 ) => {
-  const response = await api.post<any>(`/status/${id} `);
+  const response = await api.get<any>(`/status/${id} `);
   return response.data;
 };
 

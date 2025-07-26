@@ -55,7 +55,7 @@ interface ControlContextType {
   eaglesEye: any;
   engine: any;
   engines: any;
-  eyeStatus: boolean;
+  eagleStatus: any;
   loading: boolean;
   error: string | null;
 }

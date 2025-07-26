@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { IonRouterOutlet } from "@ionic/react";
 import { useAuth } from "../contexts/useAuthContext";
+import EnginesDetails from "../pages/main/engines/details/details";
 
 
 
@@ -42,7 +43,8 @@ const ProtectedRoute: React.FC<{
 const Routes: React.FC = () => {
   return (
     <IonRouterOutlet>
-   
+      <Route path="/engine/:id" exact component={EnginesDetails} />
+
       <Route path="/home" exact component={Home} />
       <Route path="/" exact component={Splash} />
 
