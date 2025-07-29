@@ -47,7 +47,7 @@ const EngineDetail = () => {
 
   const tabList = [
     { id: "metrics", label: "Metrics" },
-    { id: "performance", label: "Performance" },
+    { id: "bots", label: " Bots Performance" },
     { id: "activity", label: "Activity" },
   ];
 
@@ -201,23 +201,21 @@ const EngineDetail = () => {
             )}
 
             {/* Performance Tab */}
-            {activeTab === "performance" && (
+            {activeTab === "bots" && (
               <div className="space-y-4">
-                <h3 className="font-semibold">Bot Performance Details</h3>
+                <h3 className="font-semibold">Bots Details</h3>
                 <ul className="space-y-3">
                   {performanceData.map((bot) => (
                     <li key={bot.id} className="border-b border-gray-700 pb-3 last:border-0">
                       <div className="flex justify-between items-center">
                         <span className="font-medium">{bot.bot}</span>
                         <IonBadge color={bot.winRate > 70 ? "success" : bot.winRate > 60 ? "warning" : "danger"}>
-                          {bot.winRate}%
+                          *
                         </IonBadge>
                       </div>
                       <div className="flex justify-between text-sm text-gray-400 mt-1">
-                        <span>Profit:</span>
-                        <span className={bot.profit > 10 ? "text-green-400" : "text-yellow-400"}>
-                          +{bot.profit}u
-                        </span>
+                        <span>current activity : </span>
+                      
                       </div>
                     </li>
                   ))}

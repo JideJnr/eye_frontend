@@ -127,7 +127,7 @@ export const useEngineStore = create<EngineState>((set) => ({
     try {
       const res = await api.stopEngineById(id)
 
-              if (!res.success) {
+        if (!res.success) {
             set({loading: false , error: res.error  , message: res.message})
         }
         if (res.success) {

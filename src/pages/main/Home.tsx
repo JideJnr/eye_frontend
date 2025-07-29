@@ -51,7 +51,7 @@ function Services() {
   );
 
   const renderTabList = () => (
-    <Tab.List className=" bg-white shadow-lg h-full w-full flex ">
+    <Tab.List className=" bg-black shadow-lg h-full w-full flex ">
       <div className="flex w-full h-full p-2">
         {[
           {

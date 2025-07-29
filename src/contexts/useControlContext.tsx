@@ -64,6 +64,9 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const wrappedStartEngineById = async (id: string) => {
     const response = await startEngineById(id);
+    if (response?.success) {
+      setEngine(response.data || {});
+    }
     
 
   };
@@ -78,6 +81,9 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const wrappedStopEngineById = async (id: string) => {
     const response = await stopEngineById(id);
+    if (response?.success) {
+      setEngine(response.data || {});
+    }
   };
 
   return (
