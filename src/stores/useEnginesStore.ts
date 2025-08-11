@@ -22,6 +22,7 @@ export const useEngineStore = create<EngineState>((set) => ({
   error: null,
   message: null,
   eagleStatus: false,
+  bot:null,
 
   startEaglesEye: async () => {
     set({ loading: true, error: null })

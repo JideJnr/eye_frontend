@@ -72,8 +72,8 @@ const EngineDetail = () => {
     { id: 2, time: "15 min ago", event: "Bot D started", odds: null, status: "success" },
     { id: 3, time: "32 min ago", event: "Bet won on Match Y", odds: 2.8, status: "win" }
   ];
-
   
+  console.log(engine)
 
   return (
     <IonPage>
@@ -81,7 +81,6 @@ const EngineDetail = () => {
         <CustomHeader />
         <div className="flex flex-col p-4 max-w-2xl mx-auto">
           
-          {/* Engine Status Bar */}
           <div className="flex items-center justify-between mb-6 p-3 bg-gray-900 border border-green-600 rounded-lg">
             <div className="flex items-center">
               <div className={`w-3 h-3 rounded-full mr-3 ${
@@ -92,37 +91,40 @@ const EngineDetail = () => {
               </h1>
             </div>
             
-            {/* Start/Stop Buttons */}
+            
             <div className="flex ">
-              
               <button
                 onClick={engine.status ? handleStop : handleStart}
                 disabled={loading}
                 className={`px-4 py-2 border rounded-lg text-sm font-bold ${
-                  !engine.status 
+                  !engine.status
                     ? "border-gray-700 text-gray-500 cursor-not-allowed"
                     : "border-red-500 text-red-400 hover:bg-red-900 hover:border-red-300"
                 }`}
               >
-                { engine.status ? (
-         <>       {actionState === "stopping" ? (
-                  <span className="flex items-center">
-                    <IonSpinner name="crescent" className="w-4 h-4 mr-2" />
-                    TERMINATING
-                  </span>
-                ) : "STOP ENGINE"}</>
-):(
-       <>       {actionState === "stopping" ? (
-                  <span className="flex items-center">
-                    <IonSpinner name="crescent" className="w-4 h-4 mr-2" />
-                    TERMINATING
-                  </span>
-                ) : "Start ENGINE"}</>
+                {engine.status ? (
+                  actionState === "stopping" ? (
+                    <span className="flex items-center">
+                      <IonSpinner name="crescent" className="w-4 h-4 mr-2" />
+                      TERMINATING
+                    </span>
+                  ) : (
+                    "STOP ENGINE"
+                  )
+                ) : (
+                  
+                  actionState === "starting" ? (
+                    <span className="flex items-center">
+                      <IonSpinner name="crescent" className="w-4 h-4 mr-2" />
+                      STARTING
+                    </span>
+                  ) : (
+                    "START ENGINE"
+                  )
                 )}
               </button>
             </div>
           </div>
-
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">

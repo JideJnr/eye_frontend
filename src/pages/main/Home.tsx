@@ -11,6 +11,7 @@ import Home from "./home/home";
 import Bots from "./engines/engines";
 import Activity from "./activity/activity";
 import Settings from "./settings/settings";
+import { useControl } from "../../contexts/useControlContext";
 
 
 function classNames(...classes: string[]) {
@@ -157,6 +158,8 @@ function Services() {
     </Tab.List>
   );
 
+  const { eagleStatus, loading, error, toggleEngine , } = useControl();
+
 
 
   return (
@@ -177,9 +180,22 @@ function Services() {
             </div>
           </IonHeader>
 
-          <div className="col-span-1 row-span-10">{renderTabs()}</div>
-          <div className="col-span-1 row-span-1">{renderTabList()}</div>
+          {eagleStatus ?
+
+           ( <>
+              <div className="col-span-1 row-span-10">{renderTabs()}</div>
+              <div className="col-span-1 row-span-1">{renderTabList()}</div>
+            </>):
+            (
+              <div  className="col-span-1 row-span-11">
+                <Home/>   
+              </div>
+              
+            )
+          }
         </TabGroup>
+
+
       </IonContent>
     </IonPage>
   );
