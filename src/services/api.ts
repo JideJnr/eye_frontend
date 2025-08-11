@@ -24,8 +24,6 @@ export const signup = async (credentials: { email: string; password: string }) =
 
 export const logout = () => api.post('/api/v1/auth/logout');
 
-
-
 export const startEaglesEye = async () => {
   const response = await api.post<any>(`/start`);
   return response.data;
@@ -45,6 +43,14 @@ export const getAllEngines = async () => {
   const response = await api.get<any>(`/get/all`);
   return response.data;
 };
+
+export const getEngineById = async (
+  id:string
+) => {
+  const response = await api.post<any>(`/start/${id}`);
+  return response.data;
+};
+
 
 export const startEngineById = async (
   id:string
@@ -66,5 +72,12 @@ export const checkEngineStatus = async (
   const response = await api.get<any>(`/status/${id} `);
   return response.data;
 };
+
+export const getLogs = async (
+) => {
+  const response = await api.get<any>(`/logs `);
+  return response.data;
+};
+
 
 export default api;

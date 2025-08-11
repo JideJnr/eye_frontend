@@ -10,7 +10,7 @@ const Settings = () => {
   };
 
   const navigateToServices = () => {
-    router.push("/", "forward", "push");
+    router.push("/health", "forward", "push");
   };
 
   const toggleDarkMode = () => {
@@ -28,13 +28,21 @@ const Settings = () => {
 
       {/* Options */}
       <div className="space-y-4">
+
+        <div
+          onClick={navigateToAnalytics}
+          className="cursor-pointer border border-green-700 hover:bg-green-900 hover:text-black p-3 rounded transition-all"
+        >
+          🛠 Analytics
+        </div>
+
         
 
         <div
           onClick={navigateToServices}
           className="cursor-pointer border border-green-700 hover:bg-green-900 hover:text-black p-3 rounded transition-all"
         >
-          🛠 Services
+          🛠 Health
         </div>
 
 

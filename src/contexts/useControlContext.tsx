@@ -71,6 +71,16 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   };
 
+  
+  const wrappedGetEngineById = async (id: string) => {
+    const response = await checkEngineStatus(id);
+    if (response?.success) {
+      const engineStatus = response.data || {};
+      setEngine(engineStatus);
+    }
+  };
+
+
   const wrappedGetEngineStatusById = async (id: string) => {
     const response = await checkEngineStatus(id);
     if (response?.success) {
@@ -91,9 +101,10 @@ export const ControlProvider: React.FC<{ children: ReactNode }> = ({ children })
       value={{
         toggleEngine: toggleEaglesEye,
         getAllEngine: WrappedGetAllEngines,
-        getEngineById: wrappedGetEngineStatusById,
+        getEngineById: wrappedGetEngineById,
         startEngineById: wrappedStartEngineById,
         stopEngineById: wrappedStopEngineById,
+        getEngineStatusById: wrappedGetEngineStatusById,
         eaglesEye,
         engine,
         engines,

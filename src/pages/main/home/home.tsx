@@ -12,9 +12,6 @@ interface LogMessage {
 const Home = () => {
   const { eagleStatus, loading, error, toggleEngine , } = useControl();
 
-
-
-
   return (
     <div className="bg-black text-green-400 font-mono w-full h-full p-4">
 

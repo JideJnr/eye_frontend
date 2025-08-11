@@ -102,6 +102,25 @@ export const useEngineStore = create<EngineState>((set) => ({
     }
   },
 
+    getEngineById: async () => {
+    set({ loading: true, error: null })
+    try {
+      const res = await api.getAllEngines()
+        if (!res.success) {
+            set({loading: false , error: res.error  , message: res.message})
+        }
+        if (res.success) {
+            set({  loading: false , message: res.message , error: null })
+        }
+
+        return res || [];
+
+        
+    } catch (err: any) {
+      set({ error: err.message || 'Unknown error', loading: false })
+    }
+  },
+
   startEngineById: async (id: string) => {
     set({ loading: true, error: null })
     try {

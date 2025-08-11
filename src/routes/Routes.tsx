@@ -2,15 +2,12 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { IonRouterOutlet } from "@ionic/react";
 import { useAuth } from "../contexts/useAuthContext";
-import EnginesDetails from "../pages/main/engines/details/details";
-
-
-
 
 const Splash = React.lazy(() => import( "../pages/splash/splash"));
 const Home = React.lazy(() => import( "../pages/main/Home"));
-const Loading= React.lazy(() => import( "../components/loading/Loading"));
-
+const Loading = React.lazy(() => import( "../components/loading/Loading"));
+const Health = React.lazy(() => import( "../pages/main/health/health"));
+const EnginesDetails = React.lazy(() => import( "../pages/main/engines/details/details"));
 
 const ProtectedRoute: React.FC<{
   component: React.ComponentType<any>;
@@ -44,7 +41,7 @@ const Routes: React.FC = () => {
   return (
     <IonRouterOutlet>
       <Route path="/engine/:id" exact component={EnginesDetails} />
-
+      <Route path="/health" exact component={Health} />
       <Route path="/home" exact component={Home} />
       <Route path="/" exact component={Splash} />
 
