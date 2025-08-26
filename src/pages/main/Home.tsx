@@ -12,6 +12,7 @@ import Bots from "./engines/engines";
 import Activity from "./activity/activity";
 import Settings from "./settings/settings";
 import { useControl } from "../../contexts/useControlContext";
+import Offline from "./offline/offline";
 
 
 function classNames(...classes: string[]) {
@@ -187,8 +188,8 @@ function Services() {
               <div className="col-span-1 row-span-1">{renderTabList()}</div>
             </>):
             (
-              <div  className="col-span-1 row-span-11">
-                <Home/>   
+              <div  className="col-span-1 row-span-11 flex items-center justify-center">
+                <Offline/>   
               </div>
               
             )
